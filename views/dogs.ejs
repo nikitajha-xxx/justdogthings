@@ -1,2 +1,13 @@
+<%- include("partials/header") %>
+
 <h1>This is the Page for Dog Post</h1>
 
+<% dogs.forEach(function(dog){ %>
+    <div>
+        <h4><%= dog.name %></h4>
+        <img src="<%= dog.image %>">
+    </div>
+    
+<% }); %>
+
+<%- include("partials/footer") %>
