@@ -12,14 +12,16 @@ app.set("view engine", "ejs");
 //SCHEMA SETUP
 var dogSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    caption: String
 });
 
 var Dog = mongoose.model("Dog", dogSchema);
 
 // Dog.create({
-//     name: "Susie", 
-//     image: "https://images.unsplash.com/photo-1546975490-e8b92a360b24?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGRvZ3N8ZW58MHwwfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
+//     name: "HunnyBun", 
+//     image: "https://images.unsplash.com/photo-1546421845-6471bdcf3edf?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8ZG9nc3xlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+//     caption: "Me and Saggy love to stroll around Greenville on a nice sunny Sunday afternoon. P.S. We have the most cool sunglasses"
 // }, function(err, dog){
 //     if(err){
 //         console.log(err);
@@ -40,10 +42,12 @@ var dogs = [
 
 ]
 
+
 app.get("/", function(req, res){
     res.render("landing");
 });
 
+//INDEX - SHOW ALL DOG POSTS
 app.get("/dogs", function(req, res){
     //get all dog posts from DB
     Dog.find({}, function(err, alldogs){
@@ -51,16 +55,18 @@ app.get("/dogs", function(req, res){
             console.log(err);
         }
         else{
-            res.render("dogs", {dogs: alldogs});
+            res.render("index", {dogs: alldogs});
         }
     });
 });
 
+//CREATE - ADD NEW DOG TO DB
 app.post("/dogs", function(req, res){  //here we send a post request to create a dog post
     // get data from form and add it to the dogs array
     var name = req.body.name;
     var image = req.body.image;
-    var newDog = {name: name, image: image};
+    var caption = req.body.caption;
+    var newDog = {name: name, image: image, caption: caption};
     // create a new dog post and save to db
     Dog.create(newDog, function(err, newlyCreated){
         if(err){
@@ -73,8 +79,24 @@ app.post("/dogs", function(req, res){  //here we send a post request to create a
     });
 });
 
+//NEW - SHOW FORM TO CREATE NEW DOG POST
 app.get("/dogs/new", function(req, res){
     res.render("new");
+});
+
+//SHOW - shows more info about one dog
+app.get("/dogs/:id", function(req, res){
+    //find the dog with provided ID
+    Dog.findById(req.params.id, function(err, foundDog){
+        if(err){
+            console.log(err);
+        }
+        else{
+            //render show template with that dog
+            res.render("show", {dog: foundDog});
+        }
+    });
+    
 });
 
 
