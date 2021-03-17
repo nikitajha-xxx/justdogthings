@@ -1,13 +1,21 @@
 <%- include("partials/header") %>
 
-<h1>This is the Page for Dog Post</h1>
-
-<% dogs.forEach(function(dog){ %>
-    <div>
-        <h4><%= dog.name %></h4>
-        <img src="<%= dog.image %>">
+<div class="container-fluid">
+    <h1>Welcome to Just Dog Things!</h1>
+    <a class="btn btn-outline-dark" href="/dogs/new">Add new dog post</a>
+    <div class="row">
+        <% dogs.forEach(function(dog){ %>
+            <div class="col-lg-12 d-flex justify-content-center">
+                <div class="card indexCards shadow border-0 mt-4">
+                    <img src="<%= dog.image %>" class="card-img-top rounded mx-auto d-block">
+                    <div class="card-body">
+                        <p class="card-text"><%= dog.name %></p>
+                        <a href="#" class="card-link">Read Article</a>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
     </div>
-    
-<% }); %>
+</div>
 
 <%- include("partials/footer") %>
