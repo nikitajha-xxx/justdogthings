@@ -1,40 +1,17 @@
 var express     = require('express'),
     app         = express(),
     mongoose    = require("mongoose"),
-    Dog         = require("./models/dog")
+    Dog         = require("./models/dog"),
+    Comment     = require("./models/comment"),
+    seedDB      = require("./seeds")
+
 
 mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Connected"))
 .catch(err => console.log(err));
 app.use(express.json({limit: '20mb'}));
-app.use(express.urlencoded({ extended: false, limit: '20mb' }));
+app.use(express.urlencoded({ extended: true}));
 app.set("view engine", "ejs");
-
-
-
-// Dog.create({
-//     name: "HunnyBun", 
-//     image: "https://images.unsplash.com/photo-1546421845-6471bdcf3edf?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8ZG9nc3xlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
-//     caption: "Me and Saggy love to stroll around Greenville on a nice sunny Sunday afternoon. P.S. We have the most cool sunglasses"
-// }, function(err, dog){
-//     if(err){
-//         console.log(err);
-//     }
-//     else{
-//         console.log("Newly created dog post");
-//         console.log(dog);
-//     }
-// });
-
-
-
-
-var dogs = [
-    {name: "HunnyBun", image: "https://images.unsplash.com/photo-1546421845-6471bdcf3edf?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8ZG9nc3xlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"},
-    {name: "Susie", image: "https://images.unsplash.com/photo-1546975490-e8b92a360b24?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGRvZ3N8ZW58MHwwfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"},
-    {name: "Tommy", image: "https://images.unsplash.com/photo-1517443191895-202c31142ccd?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjR8fGRvZ3N8ZW58MHwwfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"}
-
-]
-
+seedDB();
 
 app.get("/", function(req, res){
     res.render("landing");
@@ -48,7 +25,7 @@ app.get("/dogs", function(req, res){
             console.log(err);
         }
         else{
-            res.render("index", {dogs: alldogs});
+            res.render("dogs/index", {dogs: alldogs});
         }
     });
 });
@@ -74,24 +51,64 @@ app.post("/dogs", function(req, res){  //here we send a post request to create a
 
 //NEW - SHOW FORM TO CREATE NEW DOG POST
 app.get("/dogs/new", function(req, res){
-    res.render("new");
+    res.render("dogs/new");
 });
 
 //SHOW - shows more info about one dog
 app.get("/dogs/:id", function(req, res){
     //find the dog with provided ID
-    Dog.findById(req.params.id, function(err, foundDog){
+    Dog.findById(req.params.id).populate("comments").exec(function(err, foundDog){
         if(err){
             console.log(err);
         }
         else{
+            console.log(foundDog);
             //render show template with that dog
-            res.render("show", {dog: foundDog});
+            res.render("dogs/show", {dog: foundDog});
         }
     });
     
 });
 
+// ===================
+// COMMENT ROUTES
+// ===================
+app.get("/dogs/:id/comments/new", function(req, res){
+    //find dog by id
+    Dog.findById(req.params.id, function(err, dog){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render("comments/new", {dog: dog});
+        }
+    });
+    
+});
+
+app.post("/dogs/:id/comments", function(req, res){
+    Dog.findById(req.params.id, function(err, dog){
+        if(err){
+            console.log(err);
+            res.redirect("/dogs");
+        }
+        else{
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    dog.comments.push(comment);
+                    dog.save();
+                    res.redirect("/dogs/" + dog._id);
+                }
+            })
+
+            
+
+        }
+    })
+});
 
 var listener = app.listen(process.env.PORT, process.env.IP, function(){
     console.log('Listening on port ' + listener.address().port);
