@@ -1,7 +1,7 @@
 var express     = require('express'),
     app         = express(),
-    mongoose    = require("mongoose")
-
+    mongoose    = require("mongoose"),
+    Dog         = require("./models/dog")
 
 mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Connected"))
 .catch(err => console.log(err));
@@ -9,14 +9,7 @@ app.use(express.json({limit: '20mb'}));
 app.use(express.urlencoded({ extended: false, limit: '20mb' }));
 app.set("view engine", "ejs");
 
-//SCHEMA SETUP
-var dogSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    caption: String
-});
 
-var Dog = mongoose.model("Dog", dogSchema);
 
 // Dog.create({
 //     name: "HunnyBun", 
