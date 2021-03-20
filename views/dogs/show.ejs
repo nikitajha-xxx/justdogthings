@@ -1,19 +1,46 @@
 <%- include("../partials/header") %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Dog Blog</p>
+            <div class="list-group">
+                <a href="/dogs/new" class="list-group-item list-group-item-action active">Add Your Own Post</a>
+                <a href="#" class="list-group-item list-group-item-action">Other Posts from <%= dog.name %></a>
+                <a href="/dogs" class="list-group-item list-group-item-action">More Blog Posts</a>
+                <!-- <li class="list-group-item active">Add Your Own Post</li>
+                <li class="list-group-item">See Other Posts from <%= dog.name %></li>
+                <li class="list-group-item">See More Blog Posts</li> -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card indexCards shadow border-0 mt-4 mb-4">
+                <img src="<%= dog.image %>" class="card-img-top rounded mx-auto d-block">
+                <div class="card-body">
+                    <h5 class="card-title"><%= dog.title %></h5>
+                    <p class="card-subtitle mb-2 text-muted">Posted by <%= dog.name %> on Jan 30th, 2020</p>
+                    <p class="card-text"><%= dog.caption %></p>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a class="btn btn-success float-right" href="/dogs/<%= dog._id %>/comments/new">
+                        Add new Comment
+                    </a>
+                </li>
+                <% dog.comments.forEach(function(comment){ %>
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <div class="mr-auto p-2"><strong><%= comment.author %></strong></div>
+                            <div class="p-2">10 days ago</div>
+                        </div>
+                        <p class="pl-2"><%= comment.text %></p>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+</div>
 
-<h1>This is the Show route</h1>
 
-<p><%= dog.name %></p>
-<img src="<%= dog.image %>">
-<p><%= dog.caption %></p>
-
-<p>
-    <a class="btn btn-primary" href="/dogs/<%= dog._id %>/comments/new">Add new comment</a>
-</p>
-
-<% dog.comments.forEach(function(comment){ %>
-    <p>
-        <strong><%= comment.author %></strong> - <%= comment.text %>
-    </p>
-<% }); %>
 
 <%- include("../partials/footer") %>
