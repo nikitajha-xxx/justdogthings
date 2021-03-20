@@ -11,6 +11,7 @@ mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, u
 app.use(express.json({limit: '20mb'}));
 app.use(express.urlencoded({ extended: true}));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 seedDB();
 
 app.get("/", function(req, res){
@@ -35,8 +36,9 @@ app.post("/dogs", function(req, res){  //here we send a post request to create a
     // get data from form and add it to the dogs array
     var name = req.body.name;
     var image = req.body.image;
+    var title = req.body.title;
     var caption = req.body.caption;
-    var newDog = {name: name, image: image, caption: caption};
+    var newDog = {name: name, image: image, title: title, caption: caption};
     // create a new dog post and save to db
     Dog.create(newDog, function(err, newlyCreated){
         if(err){
