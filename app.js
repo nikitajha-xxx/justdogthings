@@ -153,7 +153,21 @@ app.post("/register", function(req, res){
     }); 
 });
 
+//Show login form
+app.get("/login", function(req, res){
+    res.render("login");
+});
 
+//handle login logic
+app.post("/login", passport.authenticate("local",     //passport.authenticate here is a middleware which means
+                                                      //after post request to login it will authenticate if the user exists
+                                                      //in the db later it is given to callback handler                                                  
+    {
+        successRedirect: "/dogs", 
+        failureRedirect: "/login"
+    }), function(req, res){
+    
+});
 
 
 
