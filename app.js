@@ -1,18 +1,37 @@
-var express     = require('express'),
-    app         = express(),
-    mongoose    = require("mongoose"),
-    Dog         = require("./models/dog"),
-    Comment     = require("./models/comment"),
-    seedDB      = require("./seeds")
+var express                 = require('express'),
+    app                     = express(),
+    mongoose                = require("mongoose"),
+    passport                = require("passport"),
+    LocalStrategy           = require("passport-local"),
+    // passportLocalMongoose   = require("passport-local-mongoose"),
+    Dog                     = require("./models/dog"),
+    Comment                 = require("./models/comment"),
+    User                    = require("./models/user"),
+    seedDB                  = require("./seeds")
 
 
 mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Connected"))
 .catch(err => console.log(err));
+
 app.use(express.json({limit: '20mb'}));
 app.use(express.urlencoded({ extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 seedDB();
+
+//Passport Configuration
+app.use(require("express-session")({
+    secret: "This is the best dog site",  //this secret will be use to encode and decode the information in one session
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser()); //encoding the decoded info in session
+passport.deserializeUser(User.deserializeUser()); //decoding the encoded info in one session
+
+
 
 app.get("/", function(req, res){
     res.render("landing");
@@ -111,6 +130,32 @@ app.post("/dogs/:id/comments", function(req, res){
         }
     })
 });
+
+// =============
+//AUTH Routes
+// =============
+// shows register page
+app.get("/register", function(req, res){
+    res.render("register");
+});
+
+//handle register logic
+app.post("/register", function(req, res){
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user){  //User.register is provided by passport local mongoose package
+        if(err){
+            console.log(err);
+            return res.render("register");
+        }
+        passport.authenticate("local")(req, res, function(){
+            res.redirect("/dogs")
+        });
+    }); 
+});
+
+
+
+
 
 var listener = app.listen(process.env.PORT, process.env.IP, function(){
     console.log('Listening on port ' + listener.address().port);
