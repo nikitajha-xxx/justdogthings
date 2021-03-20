@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var dogSchema = new mongoose.Schema({
     name: String,
     image: String,
+    title: String,
     caption: String,
     comments: [
         {
