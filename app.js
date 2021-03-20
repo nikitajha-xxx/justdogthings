@@ -31,7 +31,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); //encoding the decoded info in session
 passport.deserializeUser(User.deserializeUser()); //decoding the encoded info in one session
 
-
+app.use(function(req, res, next){ //middleware which will run for every single route
+    res.locals.currentUser = req.user; //req.user containes info about the current logged in user
+    //since we need current user info on every page, we are defining it here so that all routes can use it
+    next();
+});
 
 app.get("/", function(req, res){
     res.render("landing");
@@ -45,7 +49,7 @@ app.get("/dogs", function(req, res){
             console.log(err);
         }
         else{
-            res.render("dogs/index", {dogs: alldogs});
+            res.render("dogs/index", {dogs: alldogs}); 
         }
     });
 });
@@ -94,7 +98,7 @@ app.get("/dogs/:id", function(req, res){
 // ===================
 // COMMENT ROUTES
 // ===================
-app.get("/dogs/:id/comments/new", function(req, res){
+app.get("/dogs/:id/comments/new", isLoggedIn, function(req, res){
     //find dog by id
     Dog.findById(req.params.id, function(err, dog){
         if(err){
@@ -107,7 +111,7 @@ app.get("/dogs/:id/comments/new", function(req, res){
     
 });
 
-app.post("/dogs/:id/comments", function(req, res){
+app.post("/dogs/:id/comments", isLoggedIn, function(req, res){
     Dog.findById(req.params.id, function(err, dog){
         if(err){
             console.log(err);
@@ -168,6 +172,19 @@ app.post("/login", passport.authenticate("local",     //passport.authenticate he
     }), function(req, res){
     
 });
+
+//logout route
+app.get("/logout", function(req, res){
+    req.logout(); //this logout function comes from the packages
+    res.redirect("/dogs")     
+});
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 
 
