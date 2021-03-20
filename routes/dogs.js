@@ -16,13 +16,16 @@ router.get("/", function(req, res){
 });
 
 //CREATE - ADD NEW DOG TO DB
-router.post("/", function(req, res){  //here we send a post request to create a dog post
+router.post("/", isLoggedIn, function(req, res){  //here we send a post request to create a dog post
     // get data from form and add it to the dogs array
-    var name = req.body.name;
     var image = req.body.image;
     var title = req.body.title;
     var caption = req.body.caption;
-    var newDog = {name: name, image: image, title: title, caption: caption};
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    var newDog = {image: image, title: title, caption: caption, author: author};
     // create a new dog post and save to db
     Dog.create(newDog, function(err, newlyCreated){
         if(err){
@@ -30,13 +33,14 @@ router.post("/", function(req, res){  //here we send a post request to create a 
         }
         else{
             // redirect to the dogs page
+            console.log(newlyCreated.author.username);
             res.redirect("/dogs"); 
         }
     });
 });
 
 //NEW - SHOW FORM TO CREATE NEW DOG POST
-router.get("/new", function(req, res){
+router.get("/new", isLoggedIn, function(req, res){
     res.render("dogs/new");
 });
 
@@ -55,5 +59,13 @@ router.get("/:id", function(req, res){
     });
     
 });
+
+//middleware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 module.exports = router;

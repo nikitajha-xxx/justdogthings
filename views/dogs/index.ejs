@@ -1,7 +1,5 @@
 <%- include("../partials/header") %>
 
-<h4><%= currentUser %></h4>
-
 <div class="container-fluid">
     <h1>Welcome to Just Dog Things!</h1>
     <a class="btn btn-outline-dark" href="/dogs/new">Add new dog post</a>
@@ -11,8 +9,8 @@
                 <div class="card indexCards shadow border-0 mt-4">
                     <img src="<%= dog.image %>" class="card-img-top rounded mx-auto d-block">
                     <div class="card-body">
-                        <p class="card-text"><%= dog.title %> by <%= dog.name %></p>
-                        <a href="/dogs/<%= dog._id %>" class="card-link">See What <%= dog.name %> has to say about this Picture</a>
+                        <p class="card-text"><%= dog.title %> by <%= dog.author.username %></p>
+                        <a href="/dogs/<%= dog._id %>" class="card-link">See What <%= dog.author.username %> has to say about this Picture</a>
                     </div>
                 </div>
             </div>
