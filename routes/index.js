@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
+const dog = require("../models/dog");
 var User = require("../models/user");
+var Dog = require("../models/dog");
 
 
 router.get("/", function(req, res){
@@ -52,8 +54,23 @@ router.get("/logout", function(req, res){
     res.redirect("/dogs")     
 });
 
-router.get("/profile", isLoggedIn, function(req, res){
-    res.render("profile");
+router.get("/users/:user_id", isLoggedIn, function(req, res){ 
+    res.send("This is your profile");
+    User.findById(req.params.user_id, function(err, foundUser){
+        if(err){
+            console.log(err);
+        }
+        else{
+            Dog.find().where("author.id").equals(foundUser._id).exec(function(err, dogs) {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    res.render("profile", {user: foundUser, dogs: dogs})
+                }
+            });
+        }
+    });
 });
 
 //middleware
