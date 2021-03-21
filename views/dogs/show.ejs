@@ -19,16 +19,18 @@
                     <h5 class="card-title"><%= dog.title %></h5>
                     <p class="card-subtitle mb-2 text-muted">Posted by <%= dog.author.username %> on Jan 30th, 2020</p>
                     <p class="card-text"><%= dog.caption %></p>
-                    <div class="d-flex justify-content-md-start">
-                        <div class="p-2">
-                            <a class="btn btn-warning" href="/dogs/<%= dog._id %>/edit">Edit</a>
+                    <% if(currentUser && dog.author.id.equals(currentUser._id)){ %>
+                        <div class="d-flex justify-content-md-start">
+                            <div class="p-2">
+                                <a class="btn btn-warning" href="/dogs/<%= dog._id %>/edit">Edit</a>
+                            </div>
+                            <div class="p-2">
+                                <form action="/dogs/<%= dog._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="p-2">
-                            <form action="/dogs/<%= dog._id %>?_method=DELETE" method="POST">
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
-                        </div>
-                    </div>
+                    <% } %>
                 </div>
             </div>
             <ul class="list-group list-group-flush">
