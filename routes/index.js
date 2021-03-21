@@ -52,6 +52,10 @@ router.get("/logout", function(req, res){
     res.redirect("/dogs")     
 });
 
+router.get("/profile", isLoggedIn, function(req, res){
+    res.render("profile");
+});
+
 //middleware
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
@@ -59,5 +63,6 @@ function isLoggedIn(req, res, next){
     }
     res.redirect("/login");
 }
+
 
 module.exports = router;
