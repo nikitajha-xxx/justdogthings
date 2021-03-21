@@ -3,6 +3,7 @@ var express                 = require('express'),
     mongoose                = require("mongoose"),
     passport                = require("passport"),
     LocalStrategy           = require("passport-local"),
+    methodOverride          = require("method-override"),
     Dog                     = require("./models/dog"),
     Comment                 = require("./models/comment"),
     User                    = require("./models/user"),
@@ -21,6 +22,7 @@ app.use(express.json({limit: '20mb'}));
 app.use(express.urlencoded({ extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 // seedDB(); //seed the database
 
 //Passport Configuration
