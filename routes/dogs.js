@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Dog = require("../models/dog");
+var middleware = require("../middleware");
 
 //INDEX - SHOW ALL DOG POSTS
 router.get("/", function(req, res){
@@ -16,7 +17,7 @@ router.get("/", function(req, res){
 });
 
 //CREATE - ADD NEW DOG TO DB
-router.post("/", isLoggedIn, function(req, res){  //here we send a post request to create a dog post
+router.post("/", middleware.isLoggedIn, function(req, res){  //here we send a post request to create a dog post
     // get data from form and add it to the dogs array
     var image = req.body.image;
     var title = req.body.title;
@@ -40,7 +41,7 @@ router.post("/", isLoggedIn, function(req, res){  //here we send a post request 
 });
 
 //NEW - SHOW FORM TO CREATE NEW DOG POST
-router.get("/new", isLoggedIn, function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
     res.render("dogs/new");
 });
 
@@ -61,7 +62,7 @@ router.get("/:id", function(req, res){
 });
 
 //EDIT DOG ROUTE
-router.get("/:id/edit", checkDogOwnership, function(req, res){
+router.get("/:id/edit", middleware.checkDogOwnership, function(req, res){
     Dog.findById(req.params.id, function(err, foundDog){
         res.render("dogs/edit", {dog: foundDog});
     });
@@ -70,7 +71,7 @@ router.get("/:id/edit", checkDogOwnership, function(req, res){
 
 
 //UPDATE DOG ROUTE
-router.put("/:id", checkDogOwnership, function(req, res){
+router.put("/:id", middleware.checkDogOwnership, function(req, res){
     //find and update the correct dog
     Dog.findByIdAndUpdate(req.params.id, req.body.dog, function(err, updatedDog){
         if(err){
@@ -83,7 +84,7 @@ router.put("/:id", checkDogOwnership, function(req, res){
 });
 
 //DESTROY DOG ROUTE
-router.delete("/:id", checkDogOwnership, function(req, res){
+router.delete("/:id", middleware.checkDogOwnership, function(req, res){
     Dog.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect("/dogs");
@@ -93,34 +94,5 @@ router.delete("/:id", checkDogOwnership, function(req, res){
         }
     });
 });
-
-
-//middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
-
-function checkDogOwnership(req, res, next){
-    if(req.isAuthenticated()){
-        Dog.findById(req.params.id, function(err, foundDog){
-            if(err){
-                res.redirect("back");
-            } else{
-                //does user own the dog post
-                if(foundDog.author.id.equals(req.user._id)){
-                    next();
-                } else{
-                    res.redirect("back");
-                }
-                
-            }
-        });
-    }else{
-        res.redirect("back");
-    }
-}
 
 module.exports = router;

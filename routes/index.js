@@ -4,6 +4,7 @@ var passport = require("passport");
 const dog = require("../models/dog");
 var User = require("../models/user");
 var Dog = require("../models/dog");
+var middleware = require("../middleware");
 
 
 router.get("/", function(req, res){
@@ -54,7 +55,7 @@ router.get("/logout", function(req, res){
     res.redirect("/dogs")     
 });
 
-router.get("/users/:user_id", isLoggedIn, function(req, res){ 
+router.get("/users/:user_id", middleware.isLoggedIn, function(req, res){ 
     res.send("This is your profile");
     User.findById(req.params.user_id, function(err, foundUser){
         if(err){
@@ -72,14 +73,5 @@ router.get("/users/:user_id", isLoggedIn, function(req, res){
         }
     });
 });
-
-//middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
-
 
 module.exports = router;
