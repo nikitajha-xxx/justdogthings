@@ -2,6 +2,7 @@ var express                 = require('express'),
     app                     = express(),
     mongoose                = require("mongoose"),
     passport                = require("passport"),
+    flash                   = require("connect-flash"),
     LocalStrategy           = require("passport-local"),
     methodOverride          = require("method-override"),
     Dog                     = require("./models/dog"),
@@ -24,6 +25,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 // seedDB(); //seed the database
+app.use(flash());
 
 //Passport Configuration
 app.use(require("express-session")({
@@ -40,6 +42,8 @@ passport.deserializeUser(User.deserializeUser()); //decoding the encoded info in
 app.use(function(req, res, next){ //middleware which will run for every single route
     res.locals.currentUser = req.user; //req.user containes info about the current logged in user
     //since we need current user info on every page, we are defining it here so that all routes can use it
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 

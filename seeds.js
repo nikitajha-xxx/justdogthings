@@ -30,38 +30,33 @@ function seedDB(){
         if(err){
             console.log(err);
         }
-        else{
-            console.log("removed dog");
-            // add a few dog posts
-            data.forEach(function(seed){
-                Dog.create(seed, function(err, dog){
-                    if(err){
-                        console.log(err);
-                    }
-                    else{
-                        console.log("added a dog");
-                        //create a comment
-                        Comment.create({
-                            text: "So happy today... Daddy made this white hut for me and I absolutely loved it:) Also thanks daddy for making this so comfortable and warm even from the inside..Luckiest Daughter:)",
-                            author: "Hermoine"
-                        }, function(err, comment){
-                            if(err){
-                                console.log(err);
-                            }
-                            else{
-                                dog.comments.push(comment);
-                                dog.save();
-                                console.log("created a new comment");
-                            }
-                        });
-                    }
-                });
+        console.log("removed dog");
+        // add a few dog posts
+        data.forEach(function(seed){
+            Dog.create(seed, function(err, dog){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    console.log("added a dog");
+                    //create a comment
+                    Comment.create({
+                        text: "So happy today... Daddy made this white hut for me and I absolutely loved it:) Also thanks daddy for making this so comfortable and warm even from the inside..Luckiest Daughter:)",
+                        author: "Hermoine"
+                    }, function(err, comment){
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            dog.comments.push(comment);
+                            dog.save();
+                            console.log("created a new comment");
+                        }
+                    });
+                }
             });
-        }
+        });
     });
-
-    
-    // add a view comments
 }
 
 module.exports = seedDB;

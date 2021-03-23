@@ -34,6 +34,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         else{
             Comment.create(req.body.comment, function(err, comment){
                 if(err){
+                    req.flash("Error", "SOmething went wrong!");
                     console.log(err);
                 }
                 else{
@@ -44,6 +45,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
                     comment.save();
                     dog.comments.push(comment);
                     dog.save();
+                    req.flash("success", "Successfully added comment!");
                     res.redirect("/dogs/" + dog._id);
                 }
             });
@@ -83,6 +85,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership,function(req, res
         if(err){
             res.redirect("back");
         } else{
+            req.flash("success", "Comment deleted");
             res.redirect("/dogs/" + req.params.id);
         }
         

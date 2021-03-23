@@ -24,10 +24,11 @@ router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){  //User.register is provided by passport local mongoose package
         if(err){
-            console.log(err);
-            return res.render("register");
+            req.flash("error", err.message);
+            return res.redirect("/register");
         }
         passport.authenticate("local")(req, res, function(){
+            req.flash("success", "Welcome to Dog Blog :)" + user.username);
             res.redirect("/dogs")
         });
     }); 
@@ -52,6 +53,7 @@ router.post("/login", passport.authenticate("local",     //passport.authenticate
 //logout route
 router.get("/logout", function(req, res){
     req.logout(); //this logout function comes from the packages
+    req.flash("success", "logged you out");
     res.redirect("/dogs")     
 });
 
