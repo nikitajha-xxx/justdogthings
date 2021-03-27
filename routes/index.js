@@ -58,7 +58,6 @@ router.get("/logout", function(req, res){
 });
 
 router.get("/users/:user_id", middleware.isLoggedIn, function(req, res){ 
-    res.send("This is your profile");
     User.findById(req.params.user_id, function(err, foundUser){
         if(err){
             console.log(err);
@@ -69,7 +68,11 @@ router.get("/users/:user_id", middleware.isLoggedIn, function(req, res){
                     console.log(err);
                 }
                 else{
-                    res.render("profile", {user: foundUser, dogs: dogs})
+                    var i = 0;
+                    dogs.forEach(function(dog){
+                        i = i + 1;
+                    });
+                    res.render("profile", {user: foundUser, dogs: dogs, count: i})
                 }
             });
         }

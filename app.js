@@ -16,7 +16,7 @@ var commentRoutes   = require("./routes/comments"),
     authRoutes      = require("./routes/index")
 
 
-mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Connected"))
+mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => console.log("Connected"))
 .catch(err => console.log(err));
 
 app.use(express.json({limit: '20mb'}));

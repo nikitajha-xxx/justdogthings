@@ -5,7 +5,7 @@
             <p class="pl-2 lead">Dog Blog</p>
             <div class="list-group">
                 <a href="/dogs/new" class="list-group-item list-group-item-action active">Add Your Own Post</a>
-                <a href="#" class="list-group-item list-group-item-action">Other Posts from <%= dog.author.username %></a>
+                <a href="/users/<%= dog.author.id %>" class="list-group-item list-group-item-action">Other Posts from <%= dog.author.username %></a>
                 <a href="/dogs" class="list-group-item list-group-item-action">More Blog Posts</a>
             </div>
         </div>
