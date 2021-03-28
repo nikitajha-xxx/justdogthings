@@ -1,8 +1,158 @@
-<%- include("./partials/header") %>
-<h1>This is the landing Page!!!!</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous">
+        <link rel="stylesheet" href="/stylesheets/landing.css">
+        <title>DogBlog</title>
+    </head>
+    <body>
+        <div class="bg parallax">
+            <ul class="nav justify-content-center">
+                <li class="nav-tem">
+                    <a class="navbar-brand text-white" href="#">DogBlog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-white" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/register" tabindex="-1" aria-disabled="true">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1601758124277-f0086d5ab050?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9nc3xlbnwwfDJ8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" class="img-fluid wd-100">
+                </div>
+                <div class="col-lg-6 d-flex justify-content-center">
+                    <div class="card mt-auto mb-auto border-white p-5 m-5">
+                        <div class="card-body">
+                            <h1 class="card-title">Our Purpose</h1>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            <a href="/register" class="btn btn-outline-dark">Become a Member</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutter" style="background-color: #d98e89;">
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <div class="card mt-auto mb-auto m-5" style="padding: 200px; background-color: #d98e89; border: 5px solid #d98e89; ">
+                        <div class="card-body">
+                            <h5 class="card-title inner rotate" style="font-size: 60px;">Our Community</h5>
+                            <a href="/dogs" class="btn btn-lg btn-outline-dark" style="margin-top: 200px;">View</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row no-gutter m-0">
+                        <div class="col-lg-12">
+                            <img src="https://images.pexels.com/photos/3299906/pexels-photo-3299906.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="img-fluid wd-100">
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card" style="border-radius: 0;">
+                                <div class="card-body">
+                                    <h2 class="card-title">Know About Us</h2>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                    <a href="#" class="btn btn-outline-dark">More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid bg1 parallax" >
+            <div class="row no-gutter">
+                <div class="col-lg-6 d-flex justify-content-center">
+                    <div class="card mt-auto mb-auto m-5" style="padding: 100px; background-color: #f0c0e8; border: 0 ;">
+                        <div class="card-body">
+                            <h5 class="card-title">WE do speak, but only to those who know how to listen.</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                            <a href="#" class="btn btn-outline-dark">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" style="padding-top: 50%; visibility:hidden">
+                    <span class="border border-primary"></span>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="background-color:#9470e6;">
+            <div class="row row-cols-1 row-cols-md-3">
+                <div class="col mb-4">
+                    <div class="card p-5" style="background-color:#9470e6; border:0">
+                        <div class="card-body text-center">
+                        <h5 class="card-title pb-5">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        <div class="card-body">
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card p-5" style="background-color:#9470e6; border:0">
+                        <div class="card-body text-center">
+                            <h5 class="card-title pb-5">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card p-5" style="background-color:#9470e6; border:0">
+                        <div class="card-body text-center">
+                            <h5 class="card-title pb-5">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="background-color: #0a0a0a;">
+            <div class="container">
+                <div class="card text-center" style="background-color: #0a0a0a;">
+                    <div class="card-body pt-4">
+                        <h5 class="card-title text-white"><i class="fab fa-facebook fa-2x" style="padding-right: 30px;"></i><i class="fab fa-instagram fa-2x" style="padding-right: 30px;"></i><i class="fab fa-twitter fa-2x"></i></h5>
+                        <p class="card-text text-white">Info . Support . Marketing</p>
+                        <p class="card-text text-white">Terms of Use . Privacy Policy</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Copyright 2019 DogBlog
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<h1>Welcome</h1>
+        <script type="text/javascript">
+            const parallax = document.querySelectorAll(".parallax");
+            window.addEventListener("scroll", function() {
+                let offset = window.pageYOffset;
+                parallax.forEach(function(prllx, i) {
+                    prllx.style.backgroundPositionY = (offset - prllx.offsetTop) * 0.7 + "px"; 
+                });
+            });
+        </script>
+            
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-<a href="/dogs">Lets go to the Posts page</a>
-
-<%- include("./partials/footer") %>
+    </body>
+</html>
