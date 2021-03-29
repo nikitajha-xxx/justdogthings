@@ -11,10 +11,11 @@
         </div>
         <div class="col-md-9">
             <div class="card indexCards shadow border-0 mt-4 mb-4">
-                <img src="<%= dog.image %>" class="card-img-top rounded mx-auto d-block">
+                <img src="data:dog/<%=dog.image.contentType%>;base64,
+                <%=dog.image.data.toString('base64')%>" class="card-img-top rounded mx-auto d-block">
                 <div class="card-body">
                     <h5 class="card-title"><%= dog.title %></h5>
-                    <p class="card-subtitle mb-2 text-muted">Posted by <%= dog.author.username %> on Jan 30th, 2020</p>
+                    <p class="card-subtitle mb-2 text-muted">Posted by <%= dog.author.username %> on <%= moment(dog.createdAt).format('LL') %></p>
                     <p class="card-text"><%= dog.caption %></p>
                     <% if(currentUser && dog.author.id.equals(currentUser._id)){ %>
                         <div class="d-flex justify-content-md-start">
@@ -30,7 +31,7 @@
                     <% } %>
                 </div>
             </div>
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush mb-5">
                 <li class="list-group-item">
                     <a class="btn btn-success float-right" href="/dogs/<%= dog._id %>/comments/new">
                         Add new Comment
@@ -40,7 +41,7 @@
                     <li class="list-group-item">
                         <div class="d-flex">
                             <div class="mr-auto p-2"><strong><%= comment.author.username %></strong></div>
-                            <div class="p-2">10 days ago</div>
+                            <div class="p-2"><%= moment(comment.createdAt).fromNow() %></div>
                         </div>
                         <p class="pl-2"><%= comment.text %></p>
                         <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>

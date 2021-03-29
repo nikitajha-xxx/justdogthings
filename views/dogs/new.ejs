@@ -8,12 +8,12 @@
 
                 <div class="card-img-overlay">
                     <h5 class="card-title text-center">Create a New Post</h5>
-                    <form action="/dogs" method="POST">
+                    <form action="/dogs" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <input class="form-control form-control-lg" type="text" name="title" placeholder="Blog title">
                         </div>
                         <div class="form-group">
-                            <input class="form-control form-control-lg" type="text" name="image" placeholder="image url">
+                            <input class="form-control form-control-lg" type="file" name="image" required>
                         </div>
                         <div class="form-group">
                             <input class="form-control form-control-lg" type="text" name="caption" placeholder="caption">

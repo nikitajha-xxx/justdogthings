@@ -2,6 +2,28 @@ var express = require("express");
 var router = express.Router();
 var Dog = require("../models/dog");
 var middleware = require("../middleware");
+var fs = require('fs');
+var path = require('path');
+var multer = require("multer");
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './routes/uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+
+var imageFilter = function(req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+      return cb(new Error("Only image files are allowed!"), false);
+    }
+    cb(null, true);
+  };
+ 
+var upload = multer({ storage: storage, fileFilter: imageFilter });
 
 //INDEX - SHOW ALL DOG POSTS
 router.get("/", function(req, res){
@@ -17,9 +39,12 @@ router.get("/", function(req, res){
 });
 
 //CREATE - ADD NEW DOG TO DB
-router.post("/", middleware.isLoggedIn, function(req, res){  //here we send a post request to create a dog post
+router.post("/", upload.single('image'), middleware.isLoggedIn, function(req, res){  //here we send a post request to create a dog post
     // get data from form and add it to the dogs array
-    var image = req.body.image;
+    var image = {
+        data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+        contentType: 'image/png'
+    };
     var title = req.body.title;
     var caption = req.body.caption;
     var author = {
