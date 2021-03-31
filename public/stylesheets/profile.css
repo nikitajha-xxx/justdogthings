@@ -1,0 +1,35 @@
+body{
+    margin-top: 45px;
+    background-color: #deb452;
+    
+}
+
+.box {
+    position: relative;
+  
+ }
+.imp {
+   position: absolute;
+   top: 0;
+   transform: translateY(-200px);
+   left: 0;
+   right: 0;
+   padding: 0;
+   border: 0;
+   
+ }
+
+.jumbotron{
+    background-image: url("https://images.unsplash.com/photo-1501472193205-56ffb66400f0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTB8fGRvZ3N8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60");
+    background-size: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0px ;
+}
+
+.special{
+    background-color: #dfe6ed;
+}
+
+.card-img-top{
+    border-radius: 0px ;
+}

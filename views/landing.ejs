@@ -20,12 +20,21 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/register" tabindex="-1" aria-disabled="true">Sign Up</a>
-                </li>
+                <% if(!currentUser){ %>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/register">Sign Up</a>
+                    </li>
+                <% } else{ %>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/users/<%= currentUser._id %>"><%= currentUser.username %></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/logout">Logout</a>
+                    </li>
+                <% } %>
             </ul>
         </div>
         <div class="container-fluid">
