@@ -3,7 +3,11 @@ var passportLocalMongoose = require("passport-local-mongoose");
 
 var userSchema = new mongoose.Schema({
     username: String,
-    password: String
+    password: String,
+    joinedOn: { type: Date, default: Date.now },
+    age: Number,
+    location: String,
+    about: String
 });
 
 userSchema.plugin(passportLocalMongoose);

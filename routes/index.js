@@ -21,7 +21,12 @@ router.get("/register", function(req, res){
 
 //handle register logic
 router.post("/register", function(req, res){
-    var newUser = new User({username: req.body.username});
+    var newUser = new User({username: req.body.username, 
+                            age: req.body.age,
+                            location: req.body.location,
+                            about: req.body.about
+                        });
+    
     User.register(newUser, req.body.password, function(err, user){  //User.register is provided by passport local mongoose package
         if(err){
             req.flash("error", err.message);
@@ -72,6 +77,7 @@ router.get("/users/:user_id", middleware.isLoggedIn, function(req, res){
                     dogs.forEach(function(dog){
                         i = i + 1;
                     });
+                    console.log(foundUser);
                     res.render("profile", {user: foundUser, dogs: dogs, count: i})
                 }
             });

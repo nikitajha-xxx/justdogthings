@@ -1,0 +1,9 @@
+body, html{
+    height: 100%;
+}
+
+.row.no-gutter [class*='col-lg-']:not(:first-child),
+.row.no-gutter [class*='col-lg-']:not(:last-child){
+  padding-right:0;
+  padding-left:0;
+}

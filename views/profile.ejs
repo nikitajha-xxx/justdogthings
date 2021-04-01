@@ -35,7 +35,7 @@
                 </nav>
             </div>
             <h1 class="display-4 text-white" style="text-transform: capitalize;"><%= user.username %></h1>
-            <p class="lead text-white">Labra, Age 7</p>
+            <p class="lead text-white">Labra, <%= user.age %></p>
             <hr class="my-4" style="visibility: hidden;">
             <p class="display-4 d-flex flex-row-reverse text-white" style="visibility: hidden;"><%= user.username %></p>
             <a class="btn btn-primary btn-lg" style="visibility: hidden;" href="#" role="button">Learn more</a>
@@ -50,40 +50,41 @@
                             <div class="card-body">
                                 <h5 class="card-title">About</h5>
                                 <p class="card-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                                    <%= user.about %>
+                                    <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                                     sed do eiusmod tempor incididunt ut labore et dolore magna 
                                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                    ullamco laboris nisi ut.
+                                    ullamco laboris nisi ut. -->
                                 </p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     <div class="d-flex justify-content-sm-between">
-                                        <div class="p-0">
+                                        <div class="pl-2">
                                             <p class="lead">Posts</p>
                                         </div>
-                                        <div class="p-0">
+                                        <div class="pl-2">
                                             <p class="lead"><%= count %></p>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="d-flex justify-content-sm-between">
-                                        <div class="p-0">
+                                        <div class="pl-2">
                                             <p class="lead">Lives in</p>
                                         </div>
-                                        <div class="p-0">
-                                            <p class="lead">CA, United States</p>
+                                        <div class="pl-2">
+                                            <p class="lead"><%= user.location %></p>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="d-flex justify-content-sm-between">
-                                        <div class="p-0">
+                                        <div class="pl-2">
                                             <p class="lead">Joined on</p>
                                         </div>
-                                        <div class="p-0">
-                                            <p class="lead">23 March, 2020</p>
+                                        <div class="pl-2">
+                                            <p class="lead"><%= moment(user.joinedOn).format('LL') %></p>
                                         </div>
                                     </div>
                                 </li>
@@ -129,7 +130,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
     </body>
 </html>
