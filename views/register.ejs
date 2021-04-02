@@ -13,7 +13,7 @@
             <div class="row no no-gutter">
                 <div class="col-lg-5">
                 <div class="card border-0 p-0 ">
-                    <img class="card-img-top rounded-0" src="https://images.unsplash.com/photo-1504595403659-9088ce801e29?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8ZG9nc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" class="img-fluid wd-100">
+                    <img class="card-img-top rounded-0" src="https://images.unsplash.com/photo-1543556153-6ca655a62cb8?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzJ8fGRvZ3N8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" class="img-fluid wd-100">
                     
                     <div class="card-img-overlay  mt-auto mb-auto border-white mt-5">
                         
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 </div>
-                <div class="col-lg-7 p-3">
+                <div class="col-lg-7">
                     <div class="container">
                         <% if(error && error.length > 0){ %>
                             <div class="alert alert-danger" role="alert">
@@ -39,9 +39,9 @@
                         <% } %>
                     </div>
                     <div class="card mt-auto mb-auto border-white p-4">
-                        <h1 class="card-title text-center mt-5">Join DogBlog</h1>
+                        <h1 class="card-title text-center">Join DogBlog</h1>
                         <h5 class="card-subtitle mt-2 mb-5  text-center">Already have an account? <a href="/login">Login</a></h5>
-                        <form action="/register" class="m-3" method="POST">
+                        <form action="/register" class="" method="POST">
                            <div class="form-row">
                                 <div class="form-group col-md-6 p-3">
                                     <label for="inputUsername">Username</label>
@@ -66,7 +66,7 @@
                                 <label for="inputAbout">About</label>
                                 <textarea class="form-control" id="inputAbout" rows="3" name="about" placeholder="Tell us about yourself"></textarea>
                             </div>
-                            <div class="form-group m-2 mt-5">
+                            <div class="form-group m-2 mt-4">
                                 <button class="btn btn-dark btn-lg btn-block">Join</button>
                             </div>
                         </form>
