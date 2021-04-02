@@ -78,11 +78,31 @@ router.get("/users/:user_id", middleware.isLoggedIn, function(req, res){
                         i = i + 1;
                     });
                     console.log(foundUser);
-                    res.render("profile", {user: foundUser, dogs: dogs, count: i})
+                    res.render("users/profile", {user: foundUser, dogs: dogs, count: i})
                 }
             });
         }
     });
+});
+
+router.get("/users/:user_id/edit", middleware.checkUserOwnership, function(req, res){
+    User.findById(req.params.user_id, function(err, foundUser){
+            res.render("users/edit", {user: foundUser});
+    });
+});
+
+router.put("/users/:user_id", middleware.checkUserOwnership, function(req, res){
+    //find and update the correct dog
+    User.findByIdAndUpdate(req.params.user_id, req.body.user, function(err, updatedUser){
+        if(err){
+            console.log(err);
+        } else{
+            console.log(updatedUser);
+            req.flash("success", "Successfully updated your profile");
+            res.redirect("/users/" + req.params.user_id);
+        }
+    });
+    //redirect somewhere
 });
 
 module.exports = router;
