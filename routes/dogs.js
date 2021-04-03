@@ -102,6 +102,7 @@ router.put("/:id", middleware.checkDogOwnership, function(req, res){
         if(err){
             res.redirect("/dogs");
         } else{
+            req.flash("success", "Successfully Edited the Post")
             res.redirect("/dogs/" + req.params.id);
         }
     });

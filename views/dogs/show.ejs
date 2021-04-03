@@ -1,16 +1,52 @@
-<%- include("../partials/header") %>
-<div class="container">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous">
+        <title>DogBlog</title>
+    </head>
+    <body>
+<div class="container-fluid" style="background-color: #f0c0e8;">
+    <div>
+        <ul class="nav justify-content-end">
+            <li class="nav-tem">
+                <i class="fas fa-paw fa-2x" style="color: white;"></i><a class="navbar-brand text-white pl-2" href="#">DogBlog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active text-white" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">About</a>
+            </li>
+            <% if(!currentUser){ %>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/register">Sign Up</a>
+                </li>
+            <% } else{ %>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/users/<%= currentUser._id %>"><%= currentUser.username %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/logout">Logout</a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
     <div class="row">
         <div class="col-md-3">
-            <p class="pl-2 lead">Dog Blog</p>
-            <div class="list-group">
-                <a href="/dogs/new" class="list-group-item list-group-item-action active">Add Your Own Post</a>
+            <div class="list-group mt-5">
+                <a href="/dogs/new" class="list-group-item list-group-item-action">Add Your Own Post</a>
                 <a href="/users/<%= dog.author.id %>" class="list-group-item list-group-item-action">Other Posts from <%= dog.author.username %></a>
                 <a href="/dogs" class="list-group-item list-group-item-action">More Blog Posts</a>
             </div>
         </div>
         <div class="col-md-9">
-            <div class="card indexCards shadow border-0 mt-4 mb-4">
+            <div class="card indexCards shadow border-0 mt-5 mb-4">
                 <img src="data:dog/<%=dog.image.contentType%>;base64,
                 <%=dog.image.data.toString('base64')%>" class="card-img-top rounded mx-auto d-block">
                 <div class="card-body">
@@ -18,7 +54,18 @@
                     <p class="card-subtitle mb-2 text-muted">Posted by <%= dog.author.username %> on <%= moment(dog.createdAt).format('LL') %></p>
                     <p class="card-text"><%= dog.caption %></p>
                     <% if(currentUser && dog.author.id.equals(currentUser._id)){ %>
-                        <div class="d-flex justify-content-md-start">
+                        <div class="btn-group dropright">
+                            <button type="button" class="btn dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/dogs/<%= dog._id %>/edit">Edit</a>
+                                <form action="/dogs/<%= dog._id %>?_method=DELETE" method="POST">
+                                    <button class="btn dropdown-item">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- <div class="d-flex justify-content-md-start">
                             <div class="p-2">
                                 <a class="btn btn-warning" href="/dogs/<%= dog._id %>/edit">Edit</a>
                             </div>
@@ -27,25 +74,48 @@
                                     <button class="btn btn-danger">Delete</button>
                                 </form>
                             </div>
-                        </div>
+                        </div> -->
                     <% } %>
                 </div>
             </div>
             <ul class="list-group list-group-flush mb-5">
                 <li class="list-group-item">
-                    <a class="btn btn-success float-right" href="/dogs/<%= dog._id %>/comments/new">
-                        Add new Comment
+                    <a class="btn btn-secondary float-right" href="/dogs/<%= dog._id %>/comments/new">
+                        Leave a Review
                     </a>
+                    <!-- <form action="/dogs/<%= dog._id %>/comments" method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <input type="text" class="form-control" id="inputEmail4" name="comment[text]">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <button type="submit" class="btn btn-secondary">
+                                    Comment
+                                </button>
+                            </div>
+                        </div>
+                    </form> -->
                 </li>
                 <% dog.comments.forEach(function(comment){ %>
                     <li class="list-group-item">
                         <div class="d-flex">
-                            <div class="mr-auto p-2"><strong><%= comment.author.username %></strong></div>
+                            <div class="mr-auto p-2"><i class="fas fa-user"></i><strong class="pl-2"><a href="/users/<%= comment.author.id %>"><%= comment.author.username %></a></strong> </div>
                             <div class="p-2"><%= moment(comment.createdAt).fromNow() %></div>
                         </div>
                         <p class="pl-2"><%= comment.text %></p>
                         <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
-                            <div class="d-flex justify-content-md-start">
+                            <div class="btn-group dropright">
+                                <button type="button" class="btn dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/dogs/<%= dog._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                                    <form action="/dogs/<%= dog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                        <button class="btn dropdown-item">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- <div class="d-flex justify-content-md-start">
                                 <div class="p-2">
                                     <a class="btn btn-xs btn-warning" 
                                         href="/dogs/<%= dog._id %>/comments/<%= comment._id %>/edit">Edit
@@ -56,7 +126,7 @@
                                         <input type="submit" class="btn btn-danger" value="Delete">
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
                         <% } %>
                     </li>
                 <% }); %>
@@ -65,6 +135,9 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
+    </body>
+</html>
 
-<%- include("../partials/footer") %>
