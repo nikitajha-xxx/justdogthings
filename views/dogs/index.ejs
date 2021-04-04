@@ -24,17 +24,18 @@
     <body>
 
         <div class="container-fluid bg1">
-            <ul class="nav justify-content-center">
-                <li class="nav-tem">
-                    <i class="fas fa-paw fa-2x"></i><a class="navbar-brand" href="#">DogBlog</a>
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <i class="fas fa-paw fa-2x"></i><a class="navbar-brand active" href="/">DogBlog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link" style="color: black;" href="/dogs">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
                 <% if(!currentUser){ %>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
@@ -43,25 +44,42 @@
                     </li>
                 <% } else{ %>
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/<%= currentUser._id %>"><%= currentUser.username %></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
+                        <div class="btn-group">
+                            <button type="button" class="btn dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-user-circle fa-2x" style="color: blue;"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/users/<%= currentUser._id %>">Your Profile</a>
+                                <a class="dropdown-item" href="/logout">Logout</a>
+                            </div>
+                        </div>
                     </li>
                 <% } %>
-            </ul>
+            </ul> 
             <div class="row no-gutter">
+                <div class="container pt-3">
+                    <% if(error && error.length > 0){ %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                    <% } %>
+                    <% if(success && success.length > 0){ %>
+                        <div class="alert alert-success" role="alert">
+                            <%= success %>
+                        </div>
+                    <% } %>
+                </div>
                 <div class="col-lg-6 d-flex justify-content-center">
                     <div class="card mt-auto mb-auto m-5" style="padding: 100px; background-color: rgb(245, 101, 84); border: 0 ;">
                         <div class="card-body text-white">
                             <% if(!currentUser){ %>
                                 <h5 class="card-title">Welcome to DogBlog!!!</h5>
                                 <p class="card-text">Get involved! Check out our cool blog posts and pictures from the amazing bloggers.</p>
-                                <a href="/register" class="btn btn-dark">lets get started</a>
+                                <a href="/register" class="btn btn-light">lets get started</a>
                             <% } else{ %>
                                 <h5 class="card-title">Hey <%= currentUser.username %></h5>
                                 <p class="card-text">Hope you are having a fine day!!! why don't you share about it with us :)</p>
-                                <a href="/dogs/new" class="btn btn-dark">Share a new post</a>
+                                <a href="/dogs/new" class="btn btn-light">Share a new post</a>
                             <% } %>    
                         </div>
                     </div>
@@ -72,9 +90,7 @@
             </div>
         </div>
 
-        <div class="container-fluid " style="background-color: black;">
-            <h4 class="text-white text-center m-0">All latest Posts</h4>
-        </div>
+        
 
         <div class="container-fluid" style="background-color: #e3bcb1;">
             <div class="row">
@@ -84,8 +100,8 @@
                             <img src="data:dog/<%=dog.image.contentType%>;base64,
                             <%=dog.image.data.toString('base64')%>" class="card-img-top rounded mx-auto d-block">
                             <div class="card-body">
-                                <p class="card-text"><%= dog.title %> by <%= dog.author.username %></p>
-                                <a href="/dogs/<%= dog._id %>" class="card-link">See What <%= dog.author.username %> has to say about this Picture</a>
+                                <p class="card-text"><%= dog.title %> by <strong><%= dog.author.username %></strong></p>
+                                <a href="/dogs/<%= dog._id %>" class="card-link">See What the author has to say about this Picture</a>
                             </div>
                         </div>
                     </div>

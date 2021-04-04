@@ -10,17 +10,19 @@
     </head>
     <body>
         <div class="bg parallax">
-            <ul class="nav justify-content-center">
-                <li class="nav-tem">
-                    <a class="navbar-brand text-white" href="#">DogBlog</a>
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                  
+                  <i class="fas fa-paw fa-2x" style="color: white;"></i><a class="navbar-brand text-white active" href="/">DogBlog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active text-white" href="#">Home</a>
+                    <a class="nav-link text-white" href="/dogs">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">About</a>
                 </li>
                 <% if(!currentUser){ %>
+                    
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/login">Login</a>
                     </li>
@@ -29,13 +31,30 @@
                     </li>
                 <% } else{ %>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/users/<%= currentUser._id %>"><%= currentUser.username %></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/logout">Logout</a>
+                        <div class="btn-group">
+                            <button type="button" class="btn dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-user-circle fa-2x" style="color: white;"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/users/<%= currentUser._id %>">Your Profile</a>
+                                <a class="dropdown-item" href="/logout">Logout</a>
+                            </div>
+                        </div>
                     </li>
                 <% } %>
             </ul>
+            <div class="container pt-3">
+                <% if(error && error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success && success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+            </div>
         </div>
         <div class="container-fluid">
             <div class="row no-gutter">
@@ -82,11 +101,11 @@
         <div class="container-fluid bg1 parallax" >
             <div class="row no-gutter">
                 <div class="col-lg-6 d-flex justify-content-center">
-                    <div class="card mt-auto mb-auto m-5" style="padding: 100px; background-color: #f0c0e8; border: 0 ;">
+                    <div class="card mt-auto mb-auto m-5 rounded-0" style="padding: 100px; background-color: #f0c0e8; border: 0 ;">
                         <div class="card-body">
                             <h5 class="card-title">WE do speak, but only to those who know how to listen.</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                            <a href="#" class="btn btn-outline-dark">Go somewhere</a>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                            <!-- <a href="#" class="btn btn-outline-dark">Go somewhere</a> -->
                         </div>
                     </div>
                 </div>
@@ -100,36 +119,36 @@
                 <div class="col mb-4">
                     <div class="card p-5" style="background-color:#9470e6; border:0">
                         <div class="card-body text-center">
-                        <h5 class="card-title pb-5">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title pb-4">Step 1</h5>
+                        <p class="card-text"><i class="far fa-plus-square fa-5x" style="color: #f081d0"></i></p>
                         </div>
                         <div class="card-body">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                            <p class="card-text">Create Your account for free and become our member :)</p>
+                            <a href="/register" class="card-link" style="color: black;">Go Ahead</a>
                         </div>
                     </div>
                 </div>
                 <div class="col mb-4">
                     <div class="card p-5" style="background-color:#9470e6; border:0">
                         <div class="card-body text-center">
-                            <h5 class="card-title pb-5">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title pb-4">Step 2</h5>
+                            <p class="card-text"><i class="fas fa-pen-alt fa-5x" style="color: #f081d0"></i></p>
                         </div>
                         <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+                            <p class="card-text">Share your every little expreience with us</p>
+                            <a href="/dogs/new" class="card-link" style="color: black;">Go Ahead</a>
                         </div>
                     </div>
                 </div>
                 <div class="col mb-4">
                     <div class="card p-5" style="background-color:#9470e6; border:0">
                         <div class="card-body text-center">
-                            <h5 class="card-title pb-5">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title pb-4">Step 3</h5>
+                            <p class="card-text"><i class="far fa-comment fa-5x" style="color: #f081d0"></i></p>
                         </div>
                         <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+                            <p class="card-text">See and give your reviews on other posts and become and active member</p>
+                            <a href="#" class="card-link" style="color: black;">Read More</a>
                         </div>
                     </div>
                 </div>

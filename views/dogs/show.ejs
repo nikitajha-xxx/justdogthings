@@ -8,19 +8,21 @@
         <title>DogBlog</title>
     </head>
     <body>
-<div class="container-fluid" style="background-color: #f0c0e8;">
+    <div class="container-fluid" style="background-color: #f0c0e8;">
     <div>
-        <ul class="nav justify-content-end">
-            <li class="nav-tem">
-                <i class="fas fa-paw fa-2x" style="color: white;"></i><a class="navbar-brand text-white pl-2" href="#">DogBlog</a>
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+              
+              <i class="fas fa-paw fa-2x" style="color: white;"></i><a class="navbar-brand text-white active" href="/">DogBlog</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" href="#">Home</a>
+                <a class="nav-link text-white" href="/dogs">Blog</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">About</a>
             </li>
             <% if(!currentUser){ %>
+                
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/login">Login</a>
                 </li>
@@ -29,10 +31,15 @@
                 </li>
             <% } else{ %>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/users/<%= currentUser._id %>"><%= currentUser.username %></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/logout">Logout</a>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-user-circle fa-2x" style="color: white;"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/users/<%= currentUser._id %>">Your Profile</a>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
+                    </div>
                 </li>
             <% } %>
         </ul>
@@ -40,9 +47,15 @@
     <div class="row">
         <div class="col-md-3">
             <div class="list-group mt-5">
-                <a href="/dogs/new" class="list-group-item list-group-item-action">Add Your Own Post</a>
-                <a href="/users/<%= dog.author.id %>" class="list-group-item list-group-item-action">Other Posts from <%= dog.author.username %></a>
-                <a href="/dogs" class="list-group-item list-group-item-action">More Blog Posts</a>
+                <% if(currentUser && dog.author.id.equals(currentUser._id)){ %>
+                    <a href="/dogs" class="list-group-item list-group-item-action">All Blogs</a>
+                    <a href="/dogs/new" class="list-group-item list-group-item-action">Share More Posts</a>
+                <% }else{ %>
+                    <a href="/users/<%= dog.author.id %>" class="list-group-item list-group-item-action">View <%= dog.author.username %>'s Profile </a>
+                    <a href="/dogs" class="list-group-item list-group-item-action">View All Blogs</a>
+                    <a href="/dogs/new" class="list-group-item list-group-item-action">Share your own Post</a>
+                <% } %>      
+                
             </div>
         </div>
         <div class="col-md-9">
@@ -80,7 +93,7 @@
             </div>
             <ul class="list-group list-group-flush mb-5">
                 <li class="list-group-item">
-                    <a class="btn btn-secondary float-right" href="/dogs/<%= dog._id %>/comments/new">
+                    <a class="btn btn-outline-dark float-right" href="/dogs/<%= dog._id %>/comments/new">
                         Leave a Review
                     </a>
                     <!-- <form action="/dogs/<%= dog._id %>/comments" method="POST">

@@ -28,19 +28,23 @@
                     <div class="bla">
                         <div class="collapse" id="navbarToggleExternalContent">
                         <div class="p-4">
-                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/dogs">Blog <span class="sr-only">(current)</span></a>
                             <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
                             <% if(!currentUser){ %>
                                 <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
                                 <a class="nav-link" href="/register">Sign Up <span class="sr-only">(current)</span></a>
                             <% } else{ %>
-                                <a class="nav-link" href="/users/<%= currentUser._id %>"><%= currentUser.username %><span class="sr-only">(current)</span></a>
-                                <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                                <% if(currentUser._id.equals(user._id)){ %>
+                                    <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                                <% } else { %>    
+                                    <a class="nav-link" href="/users/<%= currentUser._id %>">Your Profile<span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                                <% } %>
                             <% } %>
                         </div>
                         </div>
                         <nav class="navbar navbar-dark">
-                            <a class="navbar-brand" href="#"><i class="fas fa-paw"></i>Dog Blog</a>
+                            <a class="navbar-brand" href="/"><i class="fas fa-paw"></i>Dog Blog</a>
                         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -121,7 +125,7 @@
                                     <div class="card-body">
                                     <h5 class="card-title">We are sure this community will give you the love and praise you deserve everytime you share a part of your life with us</h5>
                                     <p class="card-text">Share a New Blog</p>
-                                    <a href="/dogs/new" class="btn btn-primary">Go somewhere</a>
+                                    <a href="/dogs/new" class="btn btn-light">Let's Share</a>
                                     </div>
                                 </div>
                             <% } %>
@@ -132,7 +136,7 @@
                                             <img src="data:dog/<%=dog.image.contentType%>;base64,
                                             <%=dog.image.data.toString('base64')%>" class="card-img-top rounded mx-auto d-block">
                                             <div class="card-body">
-                                                <p class="card-text"><%= dog.title %> by <%= dog.author.username %></p>
+                                                <p class="card-text"><%= dog.title %></p>
                                                 <a href="/dogs/<%= dog._id %>" class="card-link">View the full Post</a>
                                             </div>
                                         </div>
