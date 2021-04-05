@@ -1,7 +1,12 @@
 body{
     margin-top: 45px;
     background-color: #deb452;
+    font-family: 'Open Sans', sans-serif;
     
+}
+
+.card-title{
+    font-weight: 600;
 }
 
 .box {
