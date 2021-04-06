@@ -32,16 +32,11 @@
                         <a class="nav-link text-white pt-3" href="/register">Sign Up</a>
                     </li>
                 <% } else{ %>
-                    <li class="nav-item pt-2">
-                        <div class="btn-group">
-                            <button type="button" class="btn dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-user-circle fa-2x" style="color: white;"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/users/<%= currentUser._id %>">Your Profile</a>
-                                <a class="dropdown-item" href="/logout">Logout</a>
-                            </div>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link text-white pt-3" href="/users/<%= currentUser._id %>">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white pt-3" href="/logout">Logout</a>
                     </li>
                 <% } %>
             </ul>
@@ -81,7 +76,7 @@
                     <div class="card mt-auto mb-auto m-5" style="padding: 200px; background-color: #d98e89; border: 5px solid #d98e89; ">
                         <div class="card-body">
                             <h5 class="card-title inner rotate" style="font-size: 60px; font-weight: 700;">Our Community</h5>
-                            <a href="/dogs" class="btn btn-lg btn-outline-dark" style="margin-top: 200px;">View</a>
+                            <a href="/dogs" class="btn btn-lg btn-dark btn-outline-light border-0" style="margin-top: 200px;">View</a>
                         </div>
                     </div>
                 </div>
@@ -129,7 +124,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">Create Your account for free and become our member!!!</p>
-                            <p class="text-center"><a href="/register" class="card-link" style="color: black;">Go Ahead</a></p>
+                            <a class="pl-5" href="/register"><button class="btn btn-outline-light border-0">Read More</button></a>
                         </div>
                     </div>
                 </div>
@@ -141,7 +136,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">Share your every little expreience with us</p>
-                            <p class="text-center"><a href="/dogs/new" class="card-link" style="color: black;">Go Ahead</a></p>
+                            <a class="pl-5" href="/dogs/new"><button class="btn btn-outline-light border-0">Read More</button></a>
                         </div>
                     </div>
                 </div>
@@ -153,7 +148,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">See and give your reviews on other posts and become and active member</p>
-                            <p class="text-center"><a href="#" class="card-link" style="color: black;">Read More</a></p>
+                            <a class="pl-5" href="#"><button class="btn btn-outline-light border-0">Read More</button></a>
                         </div>
                     </div>
                 </div>

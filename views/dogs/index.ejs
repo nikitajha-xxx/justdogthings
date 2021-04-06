@@ -11,6 +11,7 @@
     </head>
     <style>
         body{
+
             font-family: 'Open Sans', sans-serif;
         }
         .card-title{
@@ -31,9 +32,9 @@
     <body>
 
         <div class="container-fluid bg1">
-            <ul class="nav nav-pills nav-fill">
+            <ul class="nav">
                 <li class="nav-item">
-                    <i class="fas fa-paw fa-2x" style="color: palevioletred;"></i><a class="navbar-brand pl-2" style="font-weight: 600; font-size: 30px; color: palevioletred;" href="/">DogBlog</a>
+                    <i class="fas fa-paw fa-2x" style="color: palevioletred;"></i><a class="navbar-brand pt-2 pl-2" style="font-weight: 600; font-size: 23px; color: palevioletred;" href="/">DogBlog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled pt-3" style="color: black;" href="/dogs">Blog</a>
@@ -42,16 +43,11 @@
                     <a class="nav-link pt-3" style="color: blue;" href="#">About</a>
                 </li>
                 <% if(!currentUser){ %>
-                    <li class="nav-item pt-2">
-                        <div class="btn-group">
-                            <button type="button" class="btn dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span style="color: blue;">Join</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/login">Login</a>
-                                <a class="dropdown-item" href="/register">Sign Up</a>
-                            </div>
-                        </div>
+                    <li class="nav-item">
+                       <a class="nav-link pt-3" style="color: blue;" href="/login">Login</a>
+                    </li>
+                    <li>
+                        <a class="nav-link pt-3" style="color: blue;" href="/register">Sign Up</a>
                     </li>
                 <% } else{ %>
                     <li class="nav-item pt-2">
@@ -86,11 +82,11 @@
                             <% if(!currentUser){ %>
                                 <h5 class="card-title">Welcome to DogBlog!!!</h5>
                                 <p class="card-text">Get involved! Check out our cool blog posts and pictures from the amazing bloggers.</p>
-                                <a href="/register" class="btn btn-light">lets get started</a>
+                                <a href="/register" class="btn btn-light btn-outline-dark border-0">lets get started</a>
                             <% } else{ %>
                                 <h5 class="card-title">Hey <%= currentUser.username %></h5>
                                 <p class="card-text">Hope you are having a fine day!!! why don't you share about it with us :)</p>
-                                <a href="/dogs/new" class="btn btn-light">Share a new post</a>
+                                <a href="/dogs/new" class="btn btn-light btn-outline-dark border-0">Share a new post</a>
                             <% } %>    
                         </div>
                     </div>
@@ -99,6 +95,7 @@
                     <span class="border border-primary"></span>
                 </div>
             </div>
+            
         </div>
 
         

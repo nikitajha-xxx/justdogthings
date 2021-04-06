@@ -20,26 +20,22 @@
     <body>
     <div class="container-fluid" style="background-color: #f0c0e8;">
     <div>
-        <ul class="nav nav-pills nav-fill">
+        <ul class="nav">
             <li class="nav-item">
-              
-              <i class="fas fa-paw fa-2x" style="color: palevioletred;"></i><a class="navbar-brand pl-2" style="font-weight: 600; font-size: 30px; color: palevioletred;" href="/">DogBlog</a>
+                <i class="fas fa-paw fa-2x" style="color: palevioletred;"></i><a class="navbar-brand pt-2 pl-2" style="font-weight: 600; font-size: 23px; color: palevioletred;" href="/">DogBlog</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white pt-3" href="/dogs">Blog</a>
+                <a class="nav-link disabled pt-3" style="color: white;" href="/dogs">Blog</a>
             </li>
-            
+            <li class="nav-item">
+                <a class="nav-link pt-3" style="color: white;" href="#">About</a>
+            </li>
             <% if(!currentUser){ %>
-                <li class="nav-item pt-2">
-                    <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span style="color: white;">Join</span>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/login">Login</a>
-                            <a class="dropdown-item" href="/register">Sign Up</a>
-                        </div>
-                    </div>
+                <li class="nav-item">
+                   <a class="nav-link pt-3" style="color: white;" href="/login">Login</a>
+                </li>
+                <li>
+                    <a class="nav-link pt-3" style="color: white;" href="/register">Sign Up</a>
                 </li>
             <% } else{ %>
                 <li class="nav-item pt-2">
@@ -54,11 +50,7 @@
                     </div>
                 </li>
             <% } %>
-            <li class="nav-item">
-                <a class="nav-link text-white pt-3" href="#">About</a>
-            </li>
         </ul>
-    </div>
     <div class="row">
         <div class="col-md-3">
             <div class="list-group mt-5">

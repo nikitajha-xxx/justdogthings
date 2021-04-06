@@ -29,21 +29,21 @@
                 <div class="jumbotron pt-0">
                     <div class="bla">
                         <div class="collapse" id="navbarToggleExternalContent">
-                        <div class="p-4">
-                            <a class="nav-link" href="/dogs">Blog <span class="sr-only">(current)</span></a>
-                            <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
-                            <% if(!currentUser){ %>
-                                <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
-                                <a class="nav-link" href="/register">Sign Up <span class="sr-only">(current)</span></a>
-                            <% } else{ %>
-                                <% if(currentUser._id.equals(user._id)){ %>
-                                    <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
-                                <% } else { %>    
-                                    <a class="nav-link" href="/users/<%= currentUser._id %>">Your Profile<span class="sr-only">(current)</span></a>
-                                    <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                            <div class="p-4">
+                                <a class="nav-link" href="/dogs">Blog <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+                                <% if(!currentUser){ %>
+                                    <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="/register">Sign Up <span class="sr-only">(current)</span></a>
+                                <% } else{ %>
+                                    <% if(currentUser._id.equals(user._id)){ %>
+                                        <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                                    <% } else { %>    
+                                        <a class="nav-link" href="/users/<%= currentUser._id %>">Your Profile<span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                                    <% } %>
                                 <% } %>
-                            <% } %>
-                        </div>
+                            </div>
                         </div>
                         <nav class="navbar navbar-dark">
                             <i class="fas fa-paw fa-2x" style="color: palevioletred;" ></i><a class="navbar-brand pl-2" style="font-weight: 600; font-size: 30px; color: palevioletred;" href="/">DogBlog</a>

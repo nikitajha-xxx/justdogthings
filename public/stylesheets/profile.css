@@ -32,7 +32,8 @@ body{
 }
 
 .special{
-    background-color: #dfe6ed;
+    /* background-color: #dfe6ed; */
+    background-color: #dadbba;
 }
 
 .card-img-top{
