@@ -16,8 +16,12 @@ var commentRoutes   = require("./routes/comments"),
     authRoutes      = require("./routes/index")
 
 
-mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => console.log("Connected"))
-.catch(err => console.log(err));
+// mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => console.log("Connected"))
+// .catch(err => console.log(err));
+
+mongoose.connect("mongodb+srv://root:doggies@cluster0.pyksf.mongodb.net/dog_blog?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+
+
 
 app.use(express.json({limit: '20mb'}));
 app.use(express.urlencoded({ extended: true}));
