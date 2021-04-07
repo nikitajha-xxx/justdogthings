@@ -3,11 +3,6 @@ body, html{
     font-family: 'Open Sans', sans-serif;
 }
 
-/* .card-title{
-    font-weight: 600;
-} */
-
-
 .row.no-gutter [class*='col-lg-']:not(:first-child),
 .row.no-gutter [class*='col-lg-']:not(:last-child){
   padding-right:0;
