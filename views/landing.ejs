@@ -12,34 +12,43 @@
     </head>
     <body>
         <div class="bg parallax">
-            <ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
-                  
-                  <i class="fas fa-paw fa-2x" style="color: palevioletred"></i><a class="navbar-brand pl-2" style="font-weight: 600; font-size: 30px; color: palevioletred;" href="/">DogBlog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white pt-3" href="/dogs">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white pt-3" href="#">About</a>
-                </li>
-                <% if(!currentUser){ %>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link text-white pt-3" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white pt-3" href="/register">Sign Up</a>
-                    </li>
-                <% } else{ %>
-                    <li class="nav-item">
-                        <a class="nav-link text-white pt-3" href="/users/<%= currentUser._id %>">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white pt-3" href="/logout">Logout</a>
-                    </li>
-                <% } %>
-            </ul>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#"><i class="fas fa-paw"></i>Dog Blog</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                        
+                  </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
+      
+                          </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+                        </li>
+                        <% if(!currentUser){ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Sign Up <span class="sr-only">(current)</span></a>
+                            </li>
+                        <% } else{ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/users/<%= currentUser._id %>"><%= currentUser.username %><span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </nav>
+    
             <div class="container pt-3">
                 <% if(error && error.length > 0){ %>
                     <div class="alert alert-danger" role="alert">
@@ -62,7 +71,7 @@
                     <img src="https://images.unsplash.com/photo-1601758124277-f0086d5ab050?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9nc3xlbnwwfDJ8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" class="img-fluid wd-100">
                 </div>
                 <div class="col-lg-6 d-flex justify-content-center">
-                    <div class="card mt-auto mb-auto border-white p-5 m-5">
+                    <div class="card mt-auto mb-auto border-white">
                         <div class="card-body">
                             <h1 class="card-title">Our Purpose</h1>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
@@ -101,7 +110,7 @@
         <div class="container-fluid bg1 parallax" >
             <div class="row no-gutter">
                 <div class="col-lg-6 d-flex justify-content-center">
-                    <div class="card mt-auto mb-auto m-5 rounded-0" style="padding: 100px; background-color: #f0c0e8; border: 0 ;">
+                    <div class="card mt-auto mb-auto m-5 p-5 rounded-0" style=" background-color: #f0c0e8; border: 0 ;">
                         <div class="card-body">
                             <h5 class="card-title">WE do speak, but only to those who know how to listen.</h5>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
@@ -124,7 +133,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">Create Your account for free and become our member!!!</p>
-                            <a class="pl-5" href="/register"><button class="btn btn-outline-light border-0">Read More</button></a>
+                            <p class="text-center"><a href="/register"><button class="btn btn-outline-light border-0">Read More</button></a></p>
                         </div>
                     </div>
                 </div>
@@ -136,7 +145,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">Share your every little expreience with us</p>
-                            <a class="pl-5" href="/dogs/new"><button class="btn btn-outline-light border-0">Read More</button></a>
+                            <p class="text-center"><a href="/dogs/new"><button class="btn btn-outline-light border-0">Read More</button></a></p>
                         </div>
                     </div>
                 </div>
@@ -148,7 +157,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">See and give your reviews on other posts and become and active member</p>
-                            <a class="pl-5" href="#"><button class="btn btn-outline-light border-0">Read More</button></a>
+                            <p class="text-center"><a href="#"><button class="btn btn-outline-light border-0">Read More</button></a></p>
                         </div>
                     </div>
                 </div>
