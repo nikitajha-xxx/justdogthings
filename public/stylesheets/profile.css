@@ -39,3 +39,18 @@ body{
 .custom-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
+
+.imp2{margin-bottom: 48.75em;}
+
+@media (min-width: 544px) {  
+    .imp2 {margin-bottom: 56.25em ;} /*1rem = 16px*/
+
+  }
+
+  @media (min-width: 768px) {  
+    .imp2 {margin-bottom: 71.87em;} /*1rem = 16px*/
+  }
+
+  
+
+  
