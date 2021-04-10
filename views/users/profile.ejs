@@ -30,30 +30,30 @@
                     <div class="bla">
                         <div class="collapse" id="navbarToggleExternalContent">
                             <div class="p-4">
-                                <a class="nav-link" href="/dogs">Blog <span class="sr-only">(current)</span></a>
-                                <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white" href="/dogs">Blog <span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white" href="#">About <span class="sr-only">(current)</span></a>
                                 <% if(!currentUser){ %>
-                                    <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
-                                    <a class="nav-link" href="/register">Sign Up <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link text-white" href="/login">Login <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link text-white" href="/register">Sign Up <span class="sr-only">(current)</span></a>
                                 <% } else{ %>
                                     <% if(currentUser._id.equals(user._id)){ %>
-                                        <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                                        <a class="nav-link text-white" href="/logout">Logout<span class="sr-only">(current)</span></a>
                                     <% } else { %>    
-                                        <a class="nav-link" href="/users/<%= currentUser._id %>">Your Profile<span class="sr-only">(current)</span></a>
-                                        <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                                        <a class="nav-link text-white" href="/users/<%= currentUser._id %>">Your Profile<span class="sr-only">(current)</span></a>
+                                        <a class="nav-link text-white" href="/logout">Logout<span class="sr-only">(current)</span></a>
                                     <% } %>
                                 <% } %>
                             </div>
                         </div>
                         <nav class="navbar navbar-dark">
-                            <i class="fas fa-paw fa-2x" style="color: palevioletred;" ></i><a class="navbar-brand pl-2" style="font-weight: 600; font-size: 30px; color: palevioletred;" href="/">DogBlog</a>
-                        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                            <i class="fas fa-paw fa-2x" style="color: white;"></i><a class="navbar-brand pl-2" href="/">DogBlog</a>
+                            <button class="navbar-toggler ml-auto custom-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
                         </nav>
                     </div>
                     <h1 class="display-4 text-white" style="text-transform: capitalize;"><%= user.username %></h1>
-                    <p class="lead text-white">Labra, <%= user.age %></p>
+                    <p class="lead text-white" style="font-weight: 600;">I am a <%= user.age %> year old blogger.</p>
                     <!-- <p class=" text-white"><i class="far fa-edit fa-2x"></i></p> -->
                     <% if(currentUser._id.equals(user._id)){ %>
                         <a href="/users/<%= user._id %>/edit"><button class="btn btn-dark"><i class="far fa-edit fa-2x"></i></button></a>
@@ -82,30 +82,30 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             <div class="d-flex justify-content-sm-between">
-                                                <div class="pl-2">
+                                                <div class="mr-auto">
                                                     <p class="lead">Posts</p>
                                                 </div>
-                                                <div class="pl-2">
+                                                <div class="ml-auto">
                                                     <p class="lead"><%= count %></p>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="list-group-item">
                                             <div class="d-flex justify-content-sm-between">
-                                                <div class="pl-2">
+                                                <div class="mr-auto">
                                                     <p class="lead">Lives in</p>
                                                 </div>
-                                                <div class="pl-2">
+                                                <div class="ml-auto">
                                                     <p class="lead"><%= user.location %></p>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="list-group-item">
                                             <div class="d-flex justify-content-sm-between">
-                                                <div class="pl-2">
+                                                <div class="mr-auto">
                                                     <p class="lead">Joined on</p>
                                                 </div>
-                                                <div class="pl-2">
+                                                <div class="ml-auto">
                                                     <p class="lead"><%= moment(user.joinedOn).format('LL') %></p>
                                                 </div>
                                             </div>
@@ -117,17 +117,15 @@
                         <div class="col-lg-8">
                             <% if(currentUser._id.equals(user._id)){ %>
                                 <div class="card shadow-lg border-0 bg-dark text-white mt-2 mb-4">
-                                    <div class="card-header">
-                                        <% if(count>0){ %>
-                                            Your Contribution has been amazing <%= user.username %>
-                                        <% } else{ %>
-                                            Hey <%= user.username %>, share you first post today
-                                        <% } %>
-                                    </div>
+                                    <% if(count>0){ %>
+                                        <h5 class="card-header">Your Contribution has been amazing <%= user.username %></h5> 
+                                    <% } else{ %>
+                                        <h5 class="card-header">Hey <%= user.username %>, share you first post today</h5> 
+                                    <% } %>
                                     <div class="card-body">
-                                    <h5 class="card-title">We are sure this community will give you the love and praise you deserve everytime you share a part of your life with us</h5>
-                                    <p class="card-text">Share a New Blog</p>
-                                    <a href="/dogs/new" class="btn btn-light">Let's Share</a>
+                                        <h5 class="card-title">We are sure this community will give you the love and praise you deserve everytime you share a part of your life with us</h5>
+                                        <p class="card-text">Share a New Blog</p>
+                                        <a href="/dogs/new" class="btn btn-light btn-outline-dark border-0">Lets Share</a>
                                     </div>
                                 </div>
                             <% } %>
@@ -139,7 +137,7 @@
                                             <%=dog.image.data.toString('base64')%>" class="card-img-top rounded mx-auto d-block">
                                             <div class="card-body">
                                                 <p class="card-text"><%= dog.title %></p>
-                                                <a href="/dogs/<%= dog._id %>" class="card-link" style="color:palevioletred;">View the full Post</a>
+                                                <a href="/dogs/<%= dog._id %>" class="card-link" style="color:palevioletred;">View the full Article</a>
                                             </div>
                                         </div>
                                     </div>

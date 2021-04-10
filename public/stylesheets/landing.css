@@ -41,6 +41,37 @@ a{
     transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
 }
 
+ul li a{
+    font-weight: 700;
+}
+  
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.testing {margin:2em 0;}
+
+h1 {font-size:1.8rem;}
+
+@media (min-width: 544px) {  
+    h1 {font-size:1.8rem;} /*1rem = 16px*/
+  }
+
+  @media (min-width: 768px) {  
+    h1 {font-size:2rem;} /*1rem = 16px*/
+  }
+
+  @media (min-width: 992px) { 
+    h1 {font-size:2.5rem;} /*1rem = 16px*/
+  }
+
+  @media (min-width: 1200px) {  
+    h1 {font-size:3rem;} /*1rem = 16px*/    
+  }
+
+  @media (min-width: 950px) and (max-width:1100px) { 
+    h1 {font-size:2.75rem;color:red;} 
+  }
 
 
 
