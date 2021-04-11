@@ -31,10 +31,6 @@
                             <h5 class="card-title text-center"><i class="fas fa-paw fa-5x"></i></h5>
                             <h3 class="card-title text-center">Edit Your Profile</h3>
                             <form class="pt-5" action="/users/<%= user._id %>?_method=PUT" method="POST">
-                                <div class="form-group">
-                                    <label for="inputUsername">Username</label>
-                                    <input type="text" class="form-control" id="inputUsername" name="user[username]" value="<%= user.username %>">
-                                </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 pt-2">
                                         <label for="inputAge">Age</label>

@@ -57,7 +57,7 @@
                     <p class="lead text-white" style="font-weight: 600;">I am a <%= user.age %> year old blogger.</p>
                     <!-- <p class=" text-white"><i class="far fa-edit fa-2x"></i></p> -->
                     <% if(currentUser._id.equals(user._id)){ %>
-                        <a href="/users/<%= user._id %>/edit"><button class="btn btn-dark"><i class="far fa-edit fa-2x"></i></button></a>
+                        <a href="/users/<%= user._id %>/edit"><button class="btn btn-lg btn-light btn-outline-dark">Edit</button></a>
                     <% } %>
                     <hr class="my-4" style="visibility: hidden;">
                     

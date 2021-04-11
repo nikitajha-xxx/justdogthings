@@ -110,6 +110,21 @@ router.put("/users/:user_id", middleware.checkUserOwnership, function(req, res){
         if(err){
             console.log(err);
         } else{
+            console.log(updatedUser);
+            Dog.find().where("author.id").equals(updatedUser._id).exec(function(err, dogs) {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    console.log("This works");
+                    dogs.forEach(function(dog){
+                        dog.author.username= updatedUser.username;
+                        dog.save();
+                    })
+                    
+                }
+            });
+
             req.flash("success", "Successfully updated your profile");
             res.redirect("/users/" + req.params.user_id);
         }
