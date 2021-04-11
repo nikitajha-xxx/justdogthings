@@ -84,6 +84,10 @@ router.get("/users/:user_id", middleware.isLoggedIn, function(req, res){
     });
 });
 
+router.get("/about", function(req, res){
+    res.render("about");
+});
+
 router.get("/users/:user_id/edit", middleware.checkUserOwnership, function(req, res){
     User.findById(req.params.user_id, function(err, foundUser){
             res.render("users/edit", {user: foundUser});

@@ -31,7 +31,8 @@
                         <div class="collapse" id="navbarToggleExternalContent">
                             <div class="p-4">
                                 <a class="nav-link text-white" href="/dogs">Blog <span class="sr-only">(current)</span></a>
-                                <a class="nav-link text-white" href="#">About <span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white" href="/about">About <span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white" href="#">Contact Us <span class="sr-only">(current)</span></a>
                                 <% if(!currentUser){ %>
                                     <a class="nav-link text-white" href="/login">Login <span class="sr-only">(current)</span></a>
                                     <a class="nav-link text-white" href="/register">Sign Up <span class="sr-only">(current)</span></a>
@@ -83,30 +84,30 @@
                                         <li class="list-group-item">
                                             <div class="d-flex justify-content-sm-between">
                                                 <div class="mr-auto">
-                                                    <p class="lead">Posts</p>
+                                                    <p >Posts</p>
                                                 </div>
                                                 <div class="ml-auto">
-                                                    <p class="lead"><%= count %></p>
+                                                    <p ><%= count %></p>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="list-group-item">
                                             <div class="d-flex justify-content-sm-between">
                                                 <div class="mr-auto">
-                                                    <p class="lead">Location</p>
+                                                    <p >Location</p>
                                                 </div>
                                                 <div class="ml-auto">
-                                                    <p class="lead"><%= user.location %></p>
+                                                    <p ><%= user.location %></p>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="list-group-item">
                                             <div class="d-flex justify-content-sm-between">
                                                 <div class="mr-auto">
-                                                    <p class="lead">Joined</p>
+                                                    <p >Joined</p>
                                                 </div>
                                                 <div class="ml-auto">
-                                                    <p class="lead"><%= moment(user.joinedOn).format('LL') %></p>
+                                                    <p ><%= moment(user.joinedOn).format('LL') %></p>
                                                 </div>
                                             </div>
                                         </li>
