@@ -33,7 +33,7 @@ router.post("/register", function(req, res){
             return res.redirect("/register");
         }
         passport.authenticate("local")(req, res, function(){
-            req.flash("success", "Welcome to Dog Blog :)" + user.username);
+            req.flash("success", "Welcome to Dog Blog :) " + user.username);
             res.redirect("/dogs")
         });
     }); 
@@ -77,6 +77,7 @@ router.get("/users/:user_id", middleware.isLoggedIn, function(req, res){
                         i = i + 1;
                     });
                     console.log(foundUser);
+                    console.log(i);
                     res.render("users/profile", {user: foundUser, dogs: dogs, count: i})
                 }
             });
@@ -90,6 +91,11 @@ router.get("/about", function(req, res){
 
 router.get("/contact", function(req, res){
     res.render("contact");
+});
+
+router.post("/contact", function(req, res){
+    req.flash("success", "Thankyou for reaching out to us!!! We will surely get back to you with an answer.");
+    res.redirect("/contact");
 });
 
 router.get("/users/:user_id/edit", middleware.checkUserOwnership, function(req, res){

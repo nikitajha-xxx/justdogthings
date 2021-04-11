@@ -129,6 +129,26 @@
                                         <a href="/dogs/new" class="btn btn-light btn-outline-dark border-0">Lets Share</a>
                                     </div>
                                 </div>
+                            <% }else{ %>
+                                <% if(count>0){ %>
+                                    <div class="card shadow-lg border-0 bg-dark text-white mt-5 mb-4">
+                                        <h5 class="card-header">You are viewing <%= user.username %>'s profile.</h5> 
+                                        <div class="card-body">
+                                            <h5 class="card-title">Hey, check out the Blogs from <%= user.username %></h5>
+                                            <p class="card-text">You can add your own posts too</p>
+                                            <a href="/dogs/new" class="btn btn-light btn-outline-dark border-0">Lets Share</a>
+                                        </div>
+                                    </div>
+                                <% }else{ %>
+                                    <div class="card shadow-lg border-0 bg-dark text-white mt-5 mb-4">
+                                        <h5 class="card-header">You are viewing <%= user.username %>'s profile.</h5> 
+                                        <div class="card-body">
+                                            <h5 class="card-title">No Blogs have been Posted by <%= user.username %> yet!!!</h5>
+                                            <p class="card-text">View Other Blogs</p>
+                                            <a href="/dogs" class="btn btn-light btn-outline-dark border-0">View</a>
+                                        </div>
+                                    </div>
+                                <% } %>
                             <% } %>
                             <div class="row">
                                 <% dogs.forEach(function(dog){ %>
