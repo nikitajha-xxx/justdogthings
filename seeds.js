@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Dog = require("./models/dog");
 var Comment = require("./models/comment");
+var User = require("./models/user");
 
 var data = [
     {
@@ -25,38 +26,64 @@ var data = [
 ]
 
 function seedDB(){
+    // var id = "60733982dd4c47001524ffc3";
+    // User.findByIdAndDelete(id, function(err, docs){
+    //     if(err){
+    //         console.log(err);
+    //     }
+    //     else{
+    //         console.log("deleted ", docs);
+    //     }
+    // });
     //Remove all Dog Posts
-    Dog.remove({}, function(err){
-        if(err){
-            console.log(err);
-        }
-        console.log("removed dog");
+    // User.deleteMany({}, function(err){
+    //     if(err){
+    //         console.log(err);
+    //     }
+    //     console.log("removed user");
         // add a few dog posts
-        data.forEach(function(seed){
-            Dog.create(seed, function(err, dog){
-                if(err){
-                    console.log(err);
-                }
-                else{
-                    console.log("added a dog");
-                    //create a comment
-                    Comment.create({
-                        text: "So happy today... Daddy made this white hut for me and I absolutely loved it:) Also thanks daddy for making this so comfortable and warm even from the inside..Luckiest Daughter:)",
-                        author: "Hermoine"
-                    }, function(err, comment){
-                        if(err){
-                            console.log(err);
-                        }
-                        else{
-                            dog.comments.push(comment);
-                            dog.save();
-                            console.log("created a new comment");
-                        }
-                    });
-                }
-            });
-        });
-    });
+        // data.forEach(function(seed){
+        //     Dog.create(seed, function(err, dog){
+        //         if(err){
+        //             console.log(err);
+        //         }
+        //         else{
+        //             console.log("added a dog");
+        //             //create a comment
+        //             Comment.create({
+        //                 text: "So happy today... Daddy made this white hut for me and I absolutely loved it:) Also thanks daddy for making this so comfortable and warm even from the inside..Luckiest Daughter:)",
+        //                 author: "Hermoine"
+        //             }, function(err, comment){
+        //                 if(err){
+        //                     console.log(err);
+        //                 }
+        //                 else{
+        //                     dog.comments.push(comment);
+        //                     dog.save();
+        //                     console.log("created a new comment");
+        //                 }
+        //             });
+        //         }
+        //     });
+        // });
+    // });
+//     Dog.deleteMany({}, function(err){
+//         if(err){
+//             console.log(err)
+//         }
+//         else{
+//             console.log("remove dog");
+//         }
+//     });
+//     Comment.deleteMany({}, function(err){
+//         if(err){
+//             console.log(err)
+//         }
+//         else{
+//             console.log("remove comment");
+//         }
+//     })
 }
 
 module.exports = seedDB;
+
