@@ -1,53 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-        <title>DogBlog</title>
+<%- include("partials/header") %>
+        <link rel="stylesheet" href="/stylesheets/contact.css">
     </head>
-    <style>
-        .row.no-gutter [class*='col-lg-']:not(:first-child),
-        .row.no-gutter [class*='col-lg-']:not(:last-child){
-            padding-right:0;
-            padding-left:0;
-        }
-        body{
-            font-family: 'Open Sans', sans-serif;
-        }
-        ul li a{
-            font-weight: 700;
-        }   
-        .custom-toggler .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-        }
-        .card-body {margin:2em 0;}
-
-        h1 {font-size:2.7rem;}
-
-        @media (min-width: 544px) {  
-            h1 {font-size:2.7rem;} /*1rem = 16px*/
-        }
-
-        @media (min-width: 768px) {  
-            h1 {font-size:2.7rem;} /*1rem = 16px*/
-        }
-
-        @media (min-width: 992px) { 
-            h1 {font-size:2.7rem;} /*1rem = 16px*/
-        }
-
-        @media (min-width: 1200px) {  
-            h1 {font-size:3rem;} /*1rem = 16px*/    
-        }
-
-        @media (min-width: 950px) and (max-width:1100px) { 
-            h1 {font-size:2.75rem;color:red;} 
-        }
-    </style>
     <body>
         <div class="container-fluid">
             <div class="row">
@@ -126,34 +79,14 @@
                     <div class="card border-0 p-0 ">
                         <img src="https://images.unsplash.com/photo-1516366434321-728a48e6b7bf?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60" class="img-fluid wd-100">
                         <div class="card-img-overlay  mt-auto mb-auto border-white mt-5" style="visibility: hidden;">
-                            
                             <div class="card-body mt-5 pt-5">
                                 <p class="pb-5"><i class="fas fa-paw fa-5x" style="color: white;"></i></p>
                                 <h1 class="card-title text-white"><strong>Share With Others.</strong></h1>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-fluid" style="background-color: #0a0a0a;">
-            <div class="container">
-                <div class="card text-center" style="padding-top: 100px; background-color: #0a0a0a;">
-                    <div class="card-body">
-                        <h5 class="card-title text-white"><i class="fab fa-facebook fa-2x" style="padding-right: 30px;"></i><i class="fab fa-instagram fa-2x" style="padding-right: 30px;"></i><i class="fab fa-twitter fa-2x"></i></h5>
-                        <p class="card-text text-white">Info . Support . Marketing</p>
-                        <p class="card-text text-white">Terms of Use . Privacy Policy</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Copyright 2021 DogBlog
-                    </div>
-                </div>
-            </div>
-        </div>   
-
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
-    </body>
-</html>
+        
+<%- include("partials/footer") %> 
