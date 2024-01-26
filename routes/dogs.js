@@ -73,6 +73,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 //SHOW - shows more info about one dog
 router.get("/:id", function(req, res){
     //find the dog with provided ID
+    //find with exec returns a full promise
     Dog.findById(req.params.id).populate("comments").exec(function(err, foundDog){
         if(err){
             console.log(err);
@@ -89,6 +90,7 @@ router.get("/:id", function(req, res){
 //EDIT DOG ROUTE
 router.get("/:id/edit", middleware.checkDogOwnership, function(req, res){
     Dog.findById(req.params.id, function(err, foundDog){
+        //callback function
         res.render("dogs/edit", {dog: foundDog});
     });
 });

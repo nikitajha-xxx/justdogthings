@@ -7,7 +7,7 @@ var express                 = require('express'),
     methodOverride          = require("method-override"),
     Dog                     = require("./models/dog"),
     Comment                 = require("./models/comment"),
-    User                    = require("./models/user")
+    User                    = require("./models/user")  
     // seedDB                  = require("./seeds")
 
 //requiring routes
@@ -19,17 +19,23 @@ var commentRoutes   = require("./routes/comments"),
 // mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => console.log("Connected"))
 // .catch(err => console.log(err));
 
+//the below line returns a promise      
 mongoose.connect("mongodb+srv://root:doggies@cluster0.pyksf.mongodb.net/dog_blog?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
 
 
 
-app.use(express.json({limit: '20mb'}));
-app.use(express.urlencoded({ extended: true}));
-app.set("view engine", "ejs");
-app.use(express.static(__dirname + "/public"));
-app.use(methodOverride("_method"));
+app.use(express.json({limit: '20mb'})); //for parsing incoming requests with JSON Payload
+
+//we need to tell express explicitly how it should parse request bodies, if we dont by default it will give undefined for req.body
+// so we need to tell express to parse form encoded infor from the request body
+app.use(express.urlencoded({ extended: true})); //for parsing application/x-www-form-urlencod for incoming request Payload
+
+app.set("view engine", "ejs"); //configure the application to use ejs as its viewing template
+app.use(express.static(__dirname + "/public")); //this will load the files inside the public directory everytime a request is made to the express server
+app.use(methodOverride("_method")); //Since a browser form does not supports a PUT or PATCH or any other request other than GET and POST request we use method-override package
 // seedDB(); //seed the database
 app.use(flash());
+
 
 //Passport Configuration
 app.use(require("express-session")({
@@ -45,6 +51,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); //encoding the decoded info in session
 passport.deserializeUser(User.deserializeUser()); //decoding the encoded info in one session
 
+// anytime there is an incoming request on the running port opened by express, app.use function will run
 app.use(function(req, res, next){ //middleware which will run for every single route
     res.locals.currentUser = req.user; //req.user containes info about the current logged in user
     //since we need current user info on every page, we are defining it here so that all routes can use it
@@ -57,7 +64,10 @@ app.use("/", authRoutes);
 app.use("/dogs/:id/comments",commentRoutes);
 app.use("/dogs", dogRoutes);
 
+//app.listen opens up a port
 var listener = app.listen(process.env.PORT, process.env.IP, function(){
+    // callback function
+    // do something when the server starts
     console.log('Listening on port ' + listener.address().port);
-});
+}); 
 
