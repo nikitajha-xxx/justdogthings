@@ -19,8 +19,13 @@ var commentRoutes   = require("./routes/comments"),
 // mongoose.connect("mongodb://localhost:27017/dog_blog", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => console.log("Connected"))
 // .catch(err => console.log(err));
 
-//the below line returns a promise      
-mongoose.connect("mongodb+srv://root:doggies@cluster0.pyksf.mongodb.net/dog_blog?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+var db_url ='mongodb+srv://first-dog-user:mbwqyp3IMouocffr@cluster0.nfzv531.mongodb.net/?retryWrites=true&w=majority'
+console.log("what is db_url", db_url)
+
+//the below line returns a promise
+mongoose.connect(db_url, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,useCreateIndex:true}).then(() => console.log("Connected"))
+.catch(err => console.log(err));
+
 
 
 

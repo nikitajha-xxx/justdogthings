@@ -56,9 +56,11 @@ router.post("/login", passport.authenticate("local",     //passport.authenticate
 
 //logout route
 router.get("/logout", function(req, res){
-    req.logout(); //this logout function comes from the packages
-    req.flash("success", "logged you out");
-    res.redirect("/")     
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        req.flash("success", "logged you out");
+        res.redirect('/');
+    });     
 });
 
 router.get("/users/:user_id", middleware.isLoggedIn, function(req, res){ 
